@@ -1,0 +1,1 @@
+export const BASE_URL = `https://abbeybackend-f0ku44wt.b4a.run/api`

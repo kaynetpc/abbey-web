@@ -1,0 +1,69 @@
+.community-container{
+
+}
+
+.community-list {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.community-item {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+}
+
+.community-item-image {
+    background-color: #ccc;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 1.5rem;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.community-item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-transform: capitalize;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.community-add-friend {
+    background-color: orange;
+    color: #fff;
+    padding: 4px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.community-follow {
+    background-color: blue;
+    color: #fff;
+    padding: 4px;
+    border-radius: 4px;
+    text-align: center;
+
+}
+
+.community-stats {
+    font-size: 0.8rem;
+    font-weight: bold;
+    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+}
