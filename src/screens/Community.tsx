@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import "./Community.css";
 import { BASE_URL } from "../config/endpoints";
+import {FaArrowLeft, FaRegUser} from "react-icons/fa";
+import { useNavigate } from "react-router";
 
 type Props = {};
 
@@ -9,6 +11,7 @@ const Community = (props: Props) => {
   const { setIsLoading, user, autoLogin } = useAuth();
   const token = localStorage.getItem("accesstoken");
   const [active, setActive] = useState(-1);
+  const navigate = useNavigate();
 
   const [users, setUsers] = useState<any[]>([]);
 
@@ -17,7 +20,7 @@ const Community = (props: Props) => {
       return;
     }
     (async () => {
-      const url = BASE_URL + "/users?limit=10&offset=0";
+      const url = BASE_URL + "/users?limit=100&offset=0";
       setIsLoading(true);
       const response = await (
         await fetch(url, {
@@ -122,6 +125,7 @@ const Community = (props: Props) => {
 
   return (
     <div className="community-container">
+      <div className="back-btn" onClick={() => navigate('/')}><FaArrowLeft /> Back to home</div>
       <h2>Community</h2>
 
       <div className="community-stats">
@@ -135,7 +139,7 @@ const Community = (props: Props) => {
           return (
             <div key={index} className="community-item">
               <div className="community-item-image">
-                <img src="" alt="user-profile" />
+                <FaRegUser size={25} />
               </div>
               <div>
                 <h3>

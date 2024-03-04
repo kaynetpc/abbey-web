@@ -50,28 +50,34 @@ export const AuthProvider = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const autoLogin = async () => {
-    const token = localStorage.getItem("accesstoken");
-    if (token) {
-      setIsLoading(true)
-      // Validate token and fetch user details
-      const url = BASE_URL + "/profile";
-      const response = await (
-        await fetch(url, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        })
-      ).json();
-      if (response?.hasError) {
-        setIsLogin(false);
-        logout();
-        return;
-      }
-      setIsLogin(true);
+    try {
+      const token = localStorage.getItem("accesstoken");
+      if (token) {
+        setIsLoading(true)
+        // Validate token and fetch user details
+        const url = BASE_URL + "/profile";
+        const response = await (
+          await fetch(url, {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          })
+        ).json();
+        if (response?.hasError) {
+          setIsLogin(false);
+          logout();
+          return;
+        }
+        setIsLogin(true);
+        setIsLoading(false);
+        setUser((p: any) => ({ ...p, ...response.data }));
+      }      
+    } catch (error) {
+      logout()
       setIsLoading(false);
-      setUser((p: any) => ({ ...p, ...response.data }));
+      setIsLogin(false)
     }
   };
   
@@ -107,6 +113,7 @@ export const AuthProvider = ({
       setIsLogin(true);
       data?.firstName &&
         setUser((p: any) => ({ ...p, firstName: response?.data?.firstName }));
+        
       onSuccess && onSuccess(message || "Registration successful");
     } catch (error: any) {
       onErr && onErr(error.message);
@@ -130,7 +137,6 @@ export const AuthProvider = ({
         })
       ).json();
       const { data, hasError, message } = response;
-      console.log(data);
       if (hasError) {
         setIsLoading(false);
         onErr && onErr(message || "Something went wrong");

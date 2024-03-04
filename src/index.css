@@ -103,3 +103,9 @@ nav ul li a:hover {
 .login h2 {
   margin-bottom: 20px;
 }
+
+.refresh-icon {
+  color: #ccc;
+  font-size: 40px;
+  cursor: pointer;
+}
