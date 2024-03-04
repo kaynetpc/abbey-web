@@ -15,6 +15,7 @@ const RouterComponent: React.FC = () => {
       {!isLogin && (
         <Routes>
           <Route path="/*" element={<Login />} />
+          <Route path="register/*" element={<Register />} />
         </Routes>
       )}
       {isLogin && (
